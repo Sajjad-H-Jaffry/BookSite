@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   root 'books#index'
   
+  # devise_scope :book do  
+  #   get '/books/:id' => 'books#destroy'     
+  # end
+  
   resources :books
   
 end
