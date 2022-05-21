@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/bmc/jquery-raty-rails.git
+  revision: a4fb8a9cc7d0b20ab4c0b8d0a6480dd31d4a8c26
+  specs:
+    jquery-raty-rails (0.0.2)
+      rails (>= 3.2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -171,7 +178,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (13.0.6)
-    ratyrate (1.2.2.alpha)
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -250,12 +256,12 @@ DEPENDENCIES
   devise (~> 4.8, >= 4.8.1)
   jbuilder (~> 2.7)
   jquery-rails
+  jquery-raty-rails!
   listen (~> 3.2)
   mysql2 (>= 0.4.4)
   paperclip (~> 6.1)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)
-  ratyrate
   sassc-rails (>= 2.1.0)
   selenium-webdriver
   simple_form (~> 5.1)
@@ -271,4 +277,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   2.1.4
+   2.3.14
