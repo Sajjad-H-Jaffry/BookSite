@@ -1,7 +1,33 @@
-<h2><%= @book.title %></h2>
-<h3><%= @book.author %></h3>
-<h4><%= @book.category.name %></h4>
-<p><%= @book.description %></p>
+<div class="row">
+    
+    <div class="col-md-4"> 
+        <%= image_tag @book.book_img.url(:book_show), class: "book-show" %>
+    </div>
+    
+    <div class="col-md-8">
+        <h2><%= @book.title %></h2>
+        <h3><%= @book.author %></h3>
+        <h2>Average Rating</h2>
+        <div class="average-review-rating" data-score=<%= @average_review %>></div>
+        <p><%= @book.description %></p>
+    </div>
+
+</div>
+
+<div class="row">
+    
+    <div class="col-md-4">
+
+        <%= render @book.reviews %>
+
+        <div>
+    
+            <%= link_to "Add Rreview", new_book_review_path(@book) %>
+    
+        </div>    
+    </div>
+
+</div>
 
 <%= link_to "Back", root_path %>
 
@@ -15,3 +41,29 @@
     <% end %>
 
 <% end %>
+
+<script>
+    $(document).ready(function() {
+        $('.review-rating').raty({
+            readOnly: true,
+            score: function() {
+                return $(this).attr('data-score');
+            },
+            path: '/assets/'
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        $('.average-review-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function() {
+			return $(this).attr('data-score')
+		}
+	});
+    });
+	
+</script>
