@@ -1,26 +1,20 @@
 class BooksController < ApplicationController
     before_action :find_book, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate_user!, only: [:new, :edit]    
+    skip_before_action :authenticate_user!, only: :index
+    
+
     def index
         if params[:category].blank?
-        @books = Book.all.order("created_at DESC")
+        @books = Book.order("created_at DESC")
         else
-            @category_id = Category.find_by(name: params[:category]).id
-            @books = Book.where(:category_id => @category_id).order("created_at DESC")
+            @category = Category.find_by(name: params[:category])
+            @books = @category.books
         end
-    end
-
-    def show
-        # if @book.reviews.blank?
-        #     @average_review = 0
-        # else
-        #     @average_review = @book.reviews.average(:rating).round(2)
-        # end
     end
 
     def new
         @book = current_user.books.build
-        @categories = Category.all.map{ |c| [c.name, c.id] }
+        @categories = Category.pluck(:name, :id)
     end
 
     def create
@@ -28,14 +22,14 @@ class BooksController < ApplicationController
         @book.category_id = params[:category_id]
 
         if @book.save
-            redirect_to root_path
+            redirect_to book_path(@book)
         else
             render 'new'
         end 
     end
 
     def edit
-        @categories = Category.all.map{ |c| [c.name, c.id] }
+        @categories = Category.pluck(:name, :id)
     end
 
     def update 
