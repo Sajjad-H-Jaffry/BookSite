@@ -18,11 +18,9 @@
         </div>
     </div>
 
-</div>
-
-<div class="row">
+    <div class="row">
     
-    <div class="col-md-4">
+    <div class="col-md-5">
 
         <div class="reviews">
 
@@ -31,6 +29,26 @@
 
             <div>
                 <%= link_to "Add Rreview", new_book_review_path(@book), class: "btn-custom" %>
+            </div> 
+       
+        </div>   
+    </div>
+
+</div>
+        
+</div>
+
+<div class="row">
+    
+    <div class="col-md-3">
+
+        <div class="reviews">
+
+            <h1>Table of Content</h1>
+            <%= render @book.content %>
+
+            <div class="col-md-4">
+                <%= link_to "AddContent", new_book_content_path(@book), class: "btn-custom" %>
             </div> 
        
         </div>   
@@ -46,8 +64,8 @@
 
         <% if @book.user_id == current_user.id %>
             
-            <%= link_to "Edit", edit_book_path(@book), class: "btn btn-custom" %>    
-            <%= button_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+            <%= link_to "Edit", edit_book_path(@book), class: "btn btn-custom"  if policy(@book).update?  %>    
+            <%= link_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" if policy(@book).destroy?%> 
 
         <% end %>
 

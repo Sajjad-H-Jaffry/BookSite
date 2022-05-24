@@ -1,3 +1,7 @@
+<h3>Tags</h3>
+<% Category.all.each do |category| %>
+	|<%= link_to category.name, books_path(category: category.name), class: "link" %>|    
+<% end %>
 <h1 class="current-category"><%= params[:category] %></h1>
 
 <% if @books.count == 0 %>
@@ -20,5 +24,6 @@
 
 	</div>
 	
-<% end %>	
+<% end %>
+	
 <%= link_to "Add Book", new_book_path %>

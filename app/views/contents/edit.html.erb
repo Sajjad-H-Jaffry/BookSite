@@ -1,0 +1,15 @@
+<div class="col-md-6 col-md-offset-3">
+
+    <div class="edit-book-form">
+
+        <h1>Edit Content</h1>
+
+        <%= simple_form_for ([@book, @content]) do |f| %>
+            <%= f.input :title %>
+            <%= f.input :subtitle %>
+            <%= f.button :submit, :class => "btn-custom2" %>
+        <% end %>
+    
+    </div>
+
+</div>

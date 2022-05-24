@@ -32,19 +32,6 @@
 
       <ul class="nav navbar-nav navbar-right">
 
-        <li class="dropdown">
-          <a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true" id="dropdownMenu1" aria-haspopup="true">
-            Categories<span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-            <% Category.all.each do |category| %>
-              <li class="<%= 'active' if params[:category] == category.name %>">
-                <%= link_to category.name, books_path(category: category.name), class: "link" %>
-              </li>
-            <% end %>
-          </ul>
-        </li>
-
         <% if user_signed_in? %>
           <li><%= link_to "Add Book", new_book_path %></li>
         <% end %>
@@ -52,6 +39,7 @@
 
     </div>
   </nav>
+  
   <script>
     $(document).on('click', 'a', function(){
       console.log("yo");

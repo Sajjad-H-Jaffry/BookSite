@@ -1,0 +1,20 @@
+<div class="review">
+
+    <h3 class="review-comment"><%= content.title %></h3>
+	<p class="review-comment"><%= content.subtitle %></p>
+
+    <% if user_signed_in? %>
+		<% if content.user_id == current_user.id %>
+
+			<div class="links btn-group">
+
+				<%= link_to "Edit", edit_book_content_path(content.book, content), class: "btn btn-custom" %>
+				<%= button_to "Delete", book_content_path(content.book, content), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+
+			</div>
+		
+		<% end %>	
+	<% end %>
+	
+    
+</div>	
