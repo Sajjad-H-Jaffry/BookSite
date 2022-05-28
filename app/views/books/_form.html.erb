@@ -1,4 +1,8 @@
 <%= simple_form_for @book, html: { multipart: true } do |f| %>
+    <%= f.input :category_id do %>
+      <%= f.select :category_id, Category.all.map{|c| [c.name,c.id]}, :prompt => "Select a category" %> 
+    <% end %>
+    
     <%= f.file_field :book_img %>
     <%= f.input :title, label: "Book Title" %>
     <%= f.input :description, as: :text%>

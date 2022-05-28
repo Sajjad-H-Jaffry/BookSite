@@ -21,16 +21,13 @@ class BooksController < ApplicationController
         @categories = Category.pluck(:name, :id)
     end
 
-    def create
-        @book = current_user.books.build(book_params)
-        @book.category_id = params[:category_id]
-
-        if @book.save
-            redirect_to book_path(@book)
+    def create      
+        if @book = Book.create(book_params)
+          redirect_to root_path
         else
-            render 'new'
-        end 
-    end
+          render 'new'
+        end
+      end
 
     def edit
         @categories = Category.pluck(:name, :id)
@@ -54,9 +51,9 @@ class BooksController < ApplicationController
 
     private
 
-    def book_params 
-        params.require(:book).permit(:title, :description, :author, :category_id, :book_img)
-    end
+    def book_params
+        params.require(:book).permit(:title, :description, :author,:category_id, :book_img).merge(user_id: current_user.id)
+        end
 
     def find_book
         @book = Book.find(params[:id])
