@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags
   get 'search', to: 'search#index'
   post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users

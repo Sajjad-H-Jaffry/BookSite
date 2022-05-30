@@ -3,6 +3,8 @@ class Book < ApplicationRecord
     belongs_to :category
     has_many :reviews, dependent: :destroy
     has_many :content, dependent: :destroy
+    has_many :taggables, dependent: :destroy
+    has_many :tags, through: :taggables
 
     # validates :title, presence: true, length: { maximum: 7 }
     # validates :description, presence: true
